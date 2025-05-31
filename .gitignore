@@ -27,6 +27,7 @@ converted/
 # System files
 .DS_Store
 Thumbs.db
+audio.py
 
 # Vercel build cache
 .vercel/output/
