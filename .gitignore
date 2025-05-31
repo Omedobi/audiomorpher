@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+*.egg
+*.log
+
+# Virtual environments
+.venv/
+env/
+venv/
+ENV/
+myenv/
+pip-wheel-metadata/
+*.whl
+
+# Streamlit cache & temp
+.streamlit/
+.cache/
+uploads/
+converted/
+*.zip
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Vercel build cache
+.vercel/output/
