@@ -5,6 +5,7 @@ __pycache__/
 *.pyd
 *.so
 *.log
+.devcontainer/
 
 # Virtual environments
 myenv/
