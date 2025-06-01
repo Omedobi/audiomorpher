@@ -7,9 +7,6 @@ __pycache__/
 *.log
 
 # Virtual environments
-.venv/
-env/
-venv/
 myenv/
 
 # Streamlit cache and state
