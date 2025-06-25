@@ -1,0 +1,78 @@
+{% set theme = request.args.get('theme', 'light') %}
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="{{ theme }}">
+<head>
+  <meta charset="UTF-8" />
+  <title>🎵 AudioMorpher</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container shadow">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h1 class="mb-0">🎵 AudioMorpher</h1>
+      <a href="{{ url_for('index', theme='dark' if theme == 'light' else 'light') }}" class="btn btn-outline-secondary">
+        {{ "🌙 Dark" if theme == "light" else "☀️ Light" }} Mode
+      </a>
+    </div>
+
+    <p>Convert one or multiple audio files into your desired format with optional normalization.</p>
+
+    <form id="convert-form" method="POST" action="/convert" enctype="multipart/form-data" onsubmit="return validateAndShowSpinner()">
+      <div class="mb-3">
+        <label for="files" class="form-label">🎧 Upload audio file(s):</label>
+        <input type="file" id="files" name="files" class="form-control" multiple required>
+      </div>
+
+      <div class="preview-container" id="preview-container"></div>
+
+      <div class="row g-3 mt-2">
+        <div class="col-md-6">
+          <label for="format" class="form-label">Convert to format:</label>
+          <select name="format" id="format" class="form-select" required>
+            {% for f in formats %}
+              <option value="{{ f }}">{{ f }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="col-md-6">
+          <label for="bitrate" class="form-label">🎵 Bitrate:</label>
+          <select name="bitrate" id="bitrate" class="form-select" required>
+            {% for b in bitrates %}
+              <option value="{{ b }}">{{ b }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+
+      <div class="form-check form-switch mt-3">
+        <input class="form-check-input" type="checkbox" id="normalize" name="normalize">
+        <label class="form-check-label" for="normalize">Normalize audio volume</label>
+      </div>
+
+      <div class="d-grid mt-4">
+        <button type="submit" id="submit-btn" class="btn btn-primary btn-lg">Convert Now</button>
+      </div>
+    </form>
+
+    <div id="status-box" class="status-box d-flex align-items-center mt-4">
+      <svg id="status-icon" class="spinner-icon me-2" viewBox="0 0 50 50">
+        <circle cx="25" cy="25" r="20" stroke="#eee" stroke-width="5" fill="none"/>
+        <circle cx="25" cy="25" r="20" stroke="#6a1b9a" stroke-width="5" fill="none" stroke-linecap="round"/>
+      </svg>
+      <p id="status-text" class="mb-0">Processing...</p>
+    </div>
+
+    <div id="error-msg" class="alert alert-danger mt-3 d-none"></div>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

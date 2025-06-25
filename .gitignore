@@ -10,10 +10,6 @@ __pycache__/
 .devcontainer/
 
 # Virtual environments
-.venv/
-env/
-venv/
-ENV/
 myenv/
 pip-wheel-metadata/
 *.whl
@@ -29,6 +25,7 @@ converted/
 .DS_Store
 Thumbs.db
 audio.py
+app.py
 
 # Vercel build cache
 .vercel/output/

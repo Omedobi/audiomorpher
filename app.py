@@ -5,10 +5,10 @@ import zipfile
 from pydub import AudioSegment
 from pydub.effects import normalize as norm
 from pydub.utils import which
-from utils.audio_convert import SUPPORTED_FORMATS, BITRATES, convert_audio
+from src.utils.audio_convert import SUPPORTED_FORMATS, BITRATES, convert_audio
 
-AudioSegment.converter = str(Path("ffmpeg/ffmpeg").resolve())
-AudioSegment.ffprobe   = str(Path("ffmpeg/ffprobe").resolve())
+AudioSegment.converter = str(Path("src/ffmpeg/ffmpeg").resolve())
+AudioSegment.ffprobe   = str(Path("src/ffmpeg/ffprobe").resolve())
 
 
 st.set_page_config(page_title="🎵 AudioMorpher", page_icon="🎶", layout="centered")
